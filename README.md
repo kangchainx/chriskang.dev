@@ -1,7 +1,7 @@
 # chriskang.dev
 
 Personal site starter built with Next.js (App Router), TypeScript, Tailwind
-CSS, shadcn/ui, phosphor-react, and framer-motion.
+CSS, shadcn/ui, phosphor-react, and motion.
 
 ## Quick start
 
@@ -15,7 +15,7 @@ npm run dev
 - App Router + `src/` structure with a global layout and top navigation
 - Tailwind CSS + shadcn/ui theme tokens (dark-first palette)
 - Prebuilt routes: `/`, `/about`, `/projects`, `/blog`
-- Hero section using shadcn UI cards, phosphor icons, and framer-motion
+- Hero section using shadcn UI cards, phosphor icons, and motion animations
 
 ## Notes
 
