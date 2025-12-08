@@ -1,25 +1,20 @@
-# chriskang.dev
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-Personal site starter built with Next.js (App Router), TypeScript, Tailwind
-CSS, shadcn/ui, phosphor-react, and motion.
+# Run and deploy your AI Studio app
 
-## Quick start
+This contains everything you need to run your app locally.
 
-```bash
-npm install
-npm run dev
-```
+View your app in AI Studio: https://ai.studio/apps/drive/11dg0QUzM8CVKB1PUezw-57rSSFDC1ms8
 
-## What's inside
+## Run Locally
 
-- App Router + `src/` structure with a global layout and top navigation
-- Tailwind CSS + shadcn/ui theme tokens (dark-first palette)
-- Prebuilt routes: `/`, `/about`, `/projects`, `/blog`
-- Hero section using shadcn UI cards, phosphor icons, and motion animations
+**Prerequisites:**  Node.js
 
-## Notes
 
-- shadcn/ui config lives in `components.json`. Add more components with
-  `npx shadcn-ui@latest add <component>`.
-- Tailwind config is in `tailwind.config.ts`; theme tokens are defined in
-  `src/app/globals.css`.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
