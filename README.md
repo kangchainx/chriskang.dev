@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Chris Kang · Portfolio
 
-# Run and deploy your AI Studio app
+Personal portfolio built with Next.js App Router, Tailwind CSS, and a handful of animated UI components (Background/Particles/CursorFollower). Icons are provided by `@phosphor-icons/react`.
 
-This contains everything you need to run your app locally.
+## Tech Stack
+- Next.js 15 (App Router)
+- React 18
+- Tailwind CSS + shadcn/ui–style primitives
+- TypeScript
 
-View your app in AI Studio: https://ai.studio/apps/drive/11dg0QUzM8CVKB1PUezw-57rSSFDC1ms8
+## Getting Started
+Prerequisites: Node.js 18+ and npm.
 
-## Run Locally
+```bash
+npm install
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+Then open http://localhost:3000.
 
+## Scripts
+- `npm run dev` – start the dev server
+- `npm run build` – production build
+- `npm start` – run the built app
+- `npm run lint` – lint the project
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Notes
+- Global styles live in `app/globals.css`.
+- Shared layout/components: `app/layout.tsx`, `components/Navbar.tsx`, `components/Footer.tsx`, `components/ui/*`.
+- Pages: `app/page.tsx`, `app/about/page.tsx`, `app/projects/page.tsx`.
