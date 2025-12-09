@@ -7,8 +7,30 @@ import { CursorFollower } from './CursorFollower';
 import { Footer } from './Footer';
 import { Navbar } from './Navbar';
 import { Particles } from './Particles';
+import type { NavItem } from '@/types';
+import type { Locale } from '@/i18n.config';
 
-const ClientShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface ClientShellProps {
+  children: React.ReactNode;
+  locale: Locale;
+  brand: string;
+  navItems: NavItem[];
+  languageToggle: {
+    toEnglish: string;
+    toChinese: string;
+    ariaLabel: string;
+  };
+  footerText: string;
+}
+
+const ClientShell: React.FC<ClientShellProps> = ({
+  children,
+  locale,
+  brand,
+  navItems,
+  languageToggle,
+  footerText,
+}) => {
   const [isDark, setIsDark] = useState(false);
   const pathname = usePathname();
 
@@ -37,13 +59,20 @@ const ClientShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="min-h-screen flex flex-col text-foreground selection:bg-foreground selection:text-background relative overflow-x-hidden">
       <CursorFollower />
       <Particles />
-      <Navbar isDark={isDark} toggleTheme={toggleTheme} />
+      <Navbar
+        locale={locale}
+        brand={brand}
+        navItems={navItems}
+        languageToggle={languageToggle}
+        isDark={isDark}
+        toggleTheme={toggleTheme}
+      />
       
       <main className="flex-grow pt-32 pb-16 px-6 md:px-12 max-w-5xl mx-auto w-full relative z-10">
         {children}
       </main>
 
-      <Footer />
+      <Footer text={footerText} />
     </div>
   );
 };
