@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { ArrowSquareOutIcon, CodeIcon, FileTextIcon, GithubLogoIcon } from '@phosphor-icons/react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowSquareOutIcon, CodeIcon, GithubLogoIcon } from '@phosphor-icons/react';
 
 import { Button } from '@/components/ui/Button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -18,6 +19,52 @@ type OtherCard = {
 };
 
 export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
+  const techIconMap: Record<string, string> = {
+    react: '/tech/react.svg',
+    'react.js': '/tech/react.svg',
+    reactjs: '/tech/react.svg',
+    typescript: '/tech/typescript.svg',
+    'type script': '/tech/typescript.svg',
+    'next.js': '/tech/next.svg',
+    nextjs: '/tech/next.svg',
+    next: '/tech/next.svg',
+    node: '/tech/nodejs.svg',
+    'nodejs': '/tech/nodejs.svg',
+    'node.js': '/tech/nodejs.svg',
+    python: '/tech/python.svg',
+    tailwind: '/tech/tailwindcss.svg',
+    'tailwind css': '/tech/tailwindcss.svg',
+    'tailwindcss': '/tech/tailwindcss.svg',
+    spring: '/tech/spring.svg',
+    'spring boot': '/tech/spring.svg',
+    postgresql: '/tech/postgresql.svg',
+    postgres: '/tech/postgresql.svg',
+    vue: '/tech/vue.svg',
+    'vue.js': '/tech/vue.svg',
+  };
+
+  const techStackItems = dict.projectsPage.hero.techStackValue
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const screenshots = [
+    { src: '/project-screenshot/login_page.png', label: 'Login Page' },
+    { src: '/project-screenshot/home_page.png', label: 'Home Page' },
+    { src: '/project-screenshot/search_result_table_page.png', label: 'Search Table' },
+    { src: '/project-screenshot/search_result_card_page.png', label: 'Search Result Card' },
+    { src: '/project-screenshot/search_result_detail_page.png', label: 'Search Detail' },
+  ];
+
+  const [activeShot, setActiveShot] = React.useState(0);
+
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      setActiveShot((prev) => (prev + 1) % screenshots.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [screenshots.length]);
+
   return (
     <div className="space-y-20">
       
@@ -29,8 +76,33 @@ export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
           {/* Content Column */}
           <div className="space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
-                <CodeIcon className="w-3 h-3" weight="duotone" /> {dict.projectsPage.hero.badge}
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                  <CodeIcon className="w-3 h-3" weight="duotone" /> {dict.projectsPage.hero.badge}
+                </div>
+                <div className="flex items-center gap-2">
+                  {techStackItems.map((item) => {
+                    const key = item.toLowerCase();
+                    const icon = techIconMap[key];
+                    return icon ? (
+                      <img
+                        key={item}
+                        src={icon}
+                        alt={item}
+                        title={item}
+                        className="h-6 w-6 rounded-sm border border-border/50 bg-card/70 p-1"
+                      />
+                    ) : (
+                      <span
+                        key={item}
+                        title={item}
+                        className="h-6 w-6 rounded-sm border border-border/50 bg-card/80 shadow-sm flex items-center justify-center"
+                      >
+                        <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
               <h2 className="text-3xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">{dict.projectsPage.hero.title}</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -49,19 +121,9 @@ export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
               </ul>
             </div>
 
-            <div className="p-4 bg-card/50 border border-border/50 rounded-lg backdrop-blur-sm">
-              <div className="text-sm font-medium">
-                <span className="text-muted-foreground mr-2">{dict.projectsPage.hero.techStackLabel}</span> 
-                <span className="text-foreground">{dict.projectsPage.hero.techStackValue}</span>
-              </div>
-            </div>
-
             <div className="flex flex-wrap gap-4 pt-2">
               <Button className="gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all">
                 <GithubLogoIcon className="w-4 h-4" weight="duotone" /> {dict.projectsPage.hero.repoCta}
-              </Button>
-              <Button variant="outline" className="gap-2 hover:bg-secondary transition-colors">
-                <FileTextIcon className="w-4 h-4" weight="duotone" /> {dict.projectsPage.hero.docsCta}
               </Button>
               <Button variant="ghost" disabled className="gap-2 opacity-50 cursor-not-allowed">
                 <ArrowSquareOutIcon className="w-4 h-4" weight="duotone" /> {dict.projectsPage.hero.demoCta}
@@ -69,13 +131,22 @@ export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
             </div>
           </div>
 
-          {/* Screenshot Placeholder Column */}
-          <div className="w-full aspect-video bg-gradient-to-br from-muted to-card rounded-xl border border-border flex items-center justify-center text-muted-foreground/50 shadow-2xl shadow-black/5 relative overflow-hidden group">
-             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
-             <div className="text-center z-10 transition-transform duration-500 group-hover:scale-105">
-                <p className="font-medium">Project Screenshot / Demo Video</p>
-                <p className="text-xs mt-2 opacity-70">16:9 Aspect Ratio</p>
-             </div>
+          {/* Screenshot / Demo Column */}
+          <div className="w-full mt-6">
+            <div className="relative aspect-video rounded-3xl overflow-hidden bg-card shadow-2xl shadow-black/5 border border-border scale-[1.03]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={screenshots[activeShot].src}
+                  src={screenshots[activeShot].src}
+                  alt={screenshots[activeShot].label}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                />
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>
