@@ -45,10 +45,10 @@ export default async function LocaleLayout({
   const dict = await getDictionary(locale);
 
   const navItems = [
+    { label: dict.nav.items.home, href: `/${locale}` },
     { label: dict.nav.items.projects, href: `/${locale}/projects` },
     { label: dict.nav.items.about, href: `/${locale}/about` },
     { label: dict.nav.items.blog, href: '#' },
-    { label: dict.nav.items.contact, href: `/${locale}/about#contact` },
   ];
 
   return (
@@ -58,6 +58,13 @@ export default async function LocaleLayout({
       navItems={navItems}
       languageToggle={dict.nav.languageToggle}
       footerText={dict.footer.copyright}
+      contact={{
+        email: dict.aboutPage.contact.items.email,
+        github: dict.aboutPage.contact.items.github,
+        x: dict.aboutPage.contact.items.x,
+        linkedin: 'www.linkedin.com/in/chris-k66',
+        wechatId: 'Kangogoaka',
+      }}
     >
       {children}
     </ClientShell>
