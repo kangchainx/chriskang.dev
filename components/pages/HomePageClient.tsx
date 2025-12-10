@@ -4,6 +4,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRightIcon, FileTextIcon, GithubLogoIcon } from '@phosphor-icons/react';
+import { motion } from 'framer-motion';
 
 import { TextMarquee } from '@/components/TextMarquee';
 import { Button } from '@/components/ui/Button';
@@ -51,22 +52,36 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
           </p>
           <div className="pt-2 flex flex-wrap gap-3">
             {heroStack.map((item, idx) => (
-              <div
+              <motion.div
                 key={item.name}
                 title={item.name}
                 aria-label={item.name}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-card/70 border border-border/50 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-200 stack-anim"
-                style={{ ['--stack-delay' as any]: `${idx * 80}ms` }}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-card/70 border border-border/50 shadow-sm hover:shadow-md transition-shadow duration-200"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: idx * 0.08, duration: 0.35, ease: 'easeOut' } }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 24 }}
               >
                 <img src={item.icon} alt={item.name} title={item.name} className="h-7 w-7" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
         
         <div className="flex gap-4">
-          <Button size="lg" className="rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1" asChild>
-            <Link href={`/${locale}/projects`}>{dict.home.hero.primaryCta}</Link>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="rounded-full hover:bg-black hover:text-white transition-all duration-200 ease-out pr-3 group" 
+            asChild
+          >
+            <Link 
+              href={`/${locale}/projects`} 
+              className="flex items-center gap-2"
+            >
+              {dict.home.hero.primaryCta}
+              <ArrowRightIcon className="w-4 h-4 translate-x-2 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100" />
+            </Link>
           </Button>
           <Button variant="outline" size="lg" className="rounded-full hover:bg-secondary/80 transition-colors" asChild>
             <a 
@@ -156,17 +171,16 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
               </div>
             </CardContent>
             <CardFooter className="gap-4">
-              <Button variant="outline" className="gap-2 hover:bg-primary hover:text-primary-foreground transition-colors" asChild>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-full hover:bg-black hover:text-white transition-all duration-200 ease-out pr-4 pl-4 gap-2"
+                asChild
+              >
+                <a href="https://github.com/kangchainx/youtube-analysis-project" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <GithubLogoIcon className="w-4 h-4" weight="duotone" />
                   {dict.home.featured.repoCta}
                 </a>
-              </Button>
-              <Button variant="outline" className="gap-2 hover:bg-secondary transition-colors" asChild>
-                 <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                   <FileTextIcon className="w-4 h-4" weight="duotone" />
-                   {dict.home.featured.docsCta}
-                 </a>
               </Button>
             </CardFooter>
           </Card>
