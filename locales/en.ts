@@ -84,33 +84,31 @@ export const en = {
     featured: {
       eyebrow: 'Featured Project',
       title: 'YouTube Analysis Tool',
-      description: 'An open-source system for video downloading, speech-to-text, subtitle generation, and AI summarization.',
+      description: 'An open-source tool designed to support YouTubers with channel data analysis, trend tracking, and performance insights. It helps creators understand their audience and optimize content strategies.',
       points: [
-        'Anti-detection strategies',
-        'Whisper / faster-whisper audio',
-        'Multi-language subtitles',
-        'Backend API + summarization',
+        'Channel data analysis',
+        'Trend analysis',
+        'Personal channel insights',
+        'Video transcription',
       ],
       techStackLabel: 'Tech Stack:',
-      techStackValue: 'React, Next.js, Node.js, FFmpeg, Whisper, Redis',
+      techStackValue: 'React, TypeScript, Node.js, Python, PostgreSQL, Minio, FFmpeg, yt-dlp, Tailwind CSS',
       repoCta: 'GitHub Repo',
-      docsCta: 'Documentation',
     },
     otherProjects: {
       title: 'Other Projects',
       cards: [
         {
-          title: 'Web3 Gas Tracker',
-          badge: 'WIP',
-          description: 'Real-time gas usage monitor for Ethereum networks.',
+          title: 'SpiritFast',
+          description: 'Companion-style gamified intermittent fasting with a soul-bound beast, loss-aversion hooks, Proof of Body, and Web3 incentives.',
         },
         {
-          title: 'Dev Productivity Scripts',
-          description: 'Automation utilities for repetitive workflows.',
+          title: 'NanoIoT',
+          description: 'Open-source IoT stack (EMQX + Kafka) for high-concurrency MQTT/CoAP/HTTP devices with rule engine, monitoring, and reverse control.',
         },
         {
-          title: 'API Playground',
-          description: 'Experiments with streaming, uploads, and AI models.',
+          title: 'UI-Whisper',
+          description: 'Turns UI animation ideas into AI-ready tasks for code generation—perfect for fast vibecoding prototypes.',
         },
       ],
     },
@@ -120,15 +118,15 @@ export const en = {
     hero: {
       badge: 'Open Source',
       title: 'YouTube Analysis Tool',
-      description: 'An open-source system for video downloading, speech-to-text, subtitle generation, and AI summarization.',
+      description: 'Powerful YouTube analytics for creators who want more than just numbers.',
       bullets: [
-        'Handles YouTube rate limits with anti-detection strategies',
-        'Processes audio using Whisper / faster-whisper',
-        'Supports multi-language subtitles & SRT/VTT export',
-        'Backend API + file server + AI summarization pipeline',
+        'Channel Data Analysis',
+        'Trend Analysis',
+        'Personal Channel Insights',
+        'Video Transcription',
       ],
       techStackLabel: 'Tech Stack:',
-      techStackValue: 'React, Next.js, TailwindCSS, Node.js, FFmpeg, Whisper/faster-whisper',
+      techStackValue: 'React, TypeScript, Node.js, Python, PostgreSQL, Tailwind CSS',
       repoCta: 'GitHub Repo',
       docsCta: 'Documentation',
       demoCta: 'Demo (Coming Soon)',
@@ -136,17 +134,16 @@ export const en = {
     otherTitle: 'Other Projects',
     otherCards: [
       {
-        title: 'Web3 Gas Tracker',
-        badge: 'WIP',
-        description: 'Real-time gas usage monitor for Ethereum networks.',
+        title: 'SpiritFast',
+        description: 'Gamified companion fasting app with soul-bound beast, Proof of Body, and Web3 incentives.',
       },
       {
-        title: 'Dev Productivity Scripts',
-        description: 'Automation utilities for repetitive workflows.',
+        title: 'NanoIoT',
+        description: 'Open-source IoT stack (EMQX + Kafka) for high-concurrency MQTT/CoAP/HTTP with rules and monitoring.',
       },
       {
-        title: 'Personal API Playground',
-        description: 'Experiments with endpoints, streaming, uploads, rate limiting, and AI models.',
+        title: 'UI-Whisper',
+        description: 'Turns UI animation ideas into AI-ready tasks for code generation—ideal for rapid vibecoding.',
       },
     ],
     contributions: {
@@ -160,7 +157,7 @@ export const en = {
   },
   aboutPage: {
     title: 'About Me',
-    intro: "I’m Chris — a full-stack developer focused on building AI-driven tools, modern web apps, and open-source projects.",
+    intro: "Hi, I'm Chris Kang. I'm a full-stack developer and independent builder with 5+ years of experience, specializing in building end-to-end web applications and open-source tools. With expertise in both product development and engineering, I take ownership of the entire project lifecycle — from ideation to execution. I thrive in fast-paced, agile environments where I can push the boundaries of creativity and technical excellence.",
     background: {
       title: 'My Background',
       items: [
@@ -170,26 +167,73 @@ export const en = {
         'Focus on modern tech stacks and open-source work',
       ],
     },
+    hire: {
+      title: 'Why Hire Me?',
+      lead:
+        'Over the past few years, I’ve built enterprise solutions and complex systems. Since moving to independent work in Oct 2025, I’ve applied those skills to ship user-centric products. Here’s how I add value:',
+      bullets: [
+        'End-to-End Involvement: From concept and prototyping to implementation and iteration, working with cross-functional teams to align speed, user needs, and business goals.',
+        'Efficient Execution & Agile Experience: Rapid iteration in agile teams, shipping high-quality products on tight timelines, and maintaining code quality and usability as an indie builder.',
+        'Cross-Functional Collaboration: Bridging engineering and product/stakeholders to keep delivery aligned with broader business objectives.',
+        'Impact-Driven Development: Focused on real value—better UX, scalability, and products that support strategic, long-term growth.',
+      ],
+    },
     approach: {
       title: 'My Approach to Work',
       left: ['✓ Strong ownership', '✓ Product thinking'],
       right: ['⚡ Fast iteration', '⚡ Autonomous & Async'],
     },
+    offer: {
+      title: 'What I Offer',
+      cards: [
+        {
+          title: 'Full-Stack Development',
+          description:
+            "I provide comprehensive full-stack development services, building scalable and high-performance web applications. Whether you're looking to build a single-page app or a complex enterprise platform, I can develop the entire stack from start to finish.",
+        },
+        {
+          title: 'Freelance & Contract Work',
+          description:
+            'I take on freelance projects and contract work for businesses and individuals needing expertise in web development. From MVP development to full product launches, I help bring your ideas to life, whether it’s a single feature or an entire platform.',
+        },
+      ],
+    },
     skills: {
       title: 'My Skills',
       sections: [
-        { title: 'Frontend', description: 'React, Next.js, TypeScript, TailwindCSS' },
-        { title: 'Backend', description: 'Node.js, Express/Fastify, Redis' },
-        { title: 'AI/ML', description: 'Whisper, faster-whisper, FFmpeg pipelines' },
-        { title: 'Web3 (Exploring)', description: 'Solidity, EVM, RPC interactions' },
+        {
+          title: 'Frontend',
+          description:
+            'JavaScript, React, TypeScript, Next.js, TailwindCSS, shadcn/ui, Ant Design, Vite, ECharts, Vue, Uni-App, Element Plus',
+        },
+        {
+          title: 'Backend',
+          description:
+            'Java, Spring Boot, Spring Cloud, RESTful APIs, Node.js (Express/Nest.js), Spring WebFlux',
+        },
+        {
+          title: 'Database',
+          description:
+            'PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch',
+        },
+        {
+          title: 'DevOps',
+          description:
+            'Linux, Git, Docker, GitHub Actions, Nginx, CI/CD',
+        },
+        {
+          title: 'Extras',
+          description:
+            'EVM, Solidity, MQTT, Kafka, RabbitMQ',
+        },
       ],
     },
     contact: {
       title: 'Let’s Connect',
       items: {
-        email: 'chris@email.com',
+        email: 'kangchehe666@gmail.com',
         github: 'github.com/kangchainx',
-        x: 'x.com/xxxxx',
+        x: 'x.com/ccKang666',
       },
     },
   },
