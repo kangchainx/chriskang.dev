@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title>Music</title>
+  <desc>Abstract music-themed placeholder</desc>
+  <defs>
+    <linearGradient id="gradMusic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#gradMusic)" />
+  <rect x="140" y="150" width="40" height="260" rx="12" fill="#0f172a" opacity="0.55" />
+  <rect x="260" y="120" width="40" height="300" rx="12" fill="#0f172a" opacity="0.55" />
+  <rect x="520" y="190" width="40" height="240" rx="12" fill="#0f172a" opacity="0.55" />
+  <rect x="620" y="140" width="40" height="290" rx="12" fill="#0f172a" opacity="0.55" />
+  <circle cx="160" cy="440" r="26" fill="#f8fafc" opacity="0.8" />
+  <circle cx="280" cy="420" r="28" fill="#f8fafc" opacity="0.8" />
+  <circle cx="540" cy="440" r="26" fill="#f8fafc" opacity="0.8" />
+  <circle cx="640" cy="420" r="28" fill="#f8fafc" opacity="0.8" />
+  <path d="M220 100 Q400 60 560 120" stroke="#f8fafc" stroke-width="6" fill="none" opacity="0.4" />
+  <text x="60" y="550" fill="#0f172a" font-family="Arial, sans-serif" font-size="36" opacity="0.85">Music • Rhythm • Flow</text>
+</svg>

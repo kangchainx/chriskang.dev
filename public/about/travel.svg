@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title>Travel</title>
+  <desc>Abstract travel-themed placeholder</desc>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#grad)" />
+  <circle cx="650" cy="140" r="80" fill="#f8fafc" opacity="0.5" />
+  <path d="M100 420 Q200 360 300 380 T500 360 T700 380" stroke="#f8fafc" stroke-width="8" fill="none" opacity="0.35" />
+  <rect x="120" y="200" width="220" height="120" rx="18" fill="#0f172a" opacity="0.35" />
+  <polygon points="520,200 660,260 520,320" fill="#0f172a" opacity="0.45" />
+  <text x="64" y="540" fill="#f8fafc" font-family="Arial, sans-serif" font-size="36" opacity="0.9">Travel • Exploration • Moments</text>
+</svg>
