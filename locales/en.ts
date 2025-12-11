@@ -157,18 +157,20 @@ export const en = {
   },
   aboutPage: {
     title: 'About Me',
-    intro: "Hi, I'm Chris Kang. I'm a full-stack developer and independent builder with 5+ years of experience, specializing in building end-to-end web applications and open-source tools. With expertise in both product development and engineering, I take ownership of the entire project lifecycle — from ideation to execution. I thrive in fast-paced, agile environments where I can push the boundaries of creativity and technical excellence.",
+    intro:
+      "Hi, I’m Chris Kang — a full-stack developer and independent builder. I focus on creating end-to-end web applications and open-source tools, combining product thinking with solid engineering. I enjoy working in fast-paced, iterative environments where ideas turn into real products quickly.",
     background: {
       title: 'My Background',
       items: [
-        'Previously worked on enterprise-level systems in China',
-        'Experience in backend services and large-scale web applications',
-        'In 2024, transitioned to independent development',
-        'Focus on modern tech stacks and open-source work',
+        'Previously worked at a major internet company in China, with 5+ years of full-stack development experience.',
+        'Held roles in product management and project management, developing strong product thinking and cross-functional collaboration skills.',
+        'Deeply involved in the development of 10+ large-scale systems, contributing across multiple phases of the engineering process.',
+        'Recently transitioned into independent development, focusing on AI-assisted coding and open-source contributions.',
+        'Passionate about travel, music, and French bulldogs, and someone who enjoys life with curiosity and enthusiasm.',
       ],
     },
     hire: {
-      title: 'Why Hire Me?',
+      title: 'Why Hire Me ?',
       lead:
         'Over the past few years, I’ve built enterprise solutions and complex systems. Since moving to independent work in Oct 2025, I’ve applied those skills to ship user-centric products. Here’s how I add value:',
       bullets: [
@@ -184,7 +186,7 @@ export const en = {
       right: ['⚡ Fast iteration', '⚡ Autonomous & Async'],
     },
     offer: {
-      title: 'What I Offer',
+      title: 'What I Offer ?',
       cards: [
         {
           title: 'Full-Stack Development',
