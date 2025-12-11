@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import type { Dictionary } from '@/locales';
 
@@ -9,15 +11,54 @@ interface AboutPageClientProps {
 }
 
 export function AboutPageClient({ dict }: AboutPageClientProps) {
+  const albumImages = [
+    { src: '/album/chris_01.jpg', alt: 'Chris Kang' },
+    { src: '/album/chris_02.jpeg', alt: 'Chris Kang' },
+    { src: '/album/chris_03.jpeg', alt: 'Chris Kang' },
+    { src: '/album/chris_04.jpeg', alt: 'Chris Kang' },
+    { src: '/album/chris_05.jpeg', alt: 'Chris Kang' },
+    { src: '/album/Timt_01.jpeg', alt: 'Chris Kang' },
+  ];
+  const [photoIndex, setPhotoIndex] = React.useState(0);
+
+  const shufflePhoto = React.useCallback(() => {
+    if (albumImages.length <= 1) return;
+    let next = photoIndex;
+    while (next === photoIndex) {
+      next = Math.floor(Math.random() * albumImages.length);
+    }
+    setPhotoIndex(next);
+  }, [albumImages.length, photoIndex]);
+
   return (
-      <div className="space-y-16 max-w-3xl">
-      
-      {/* Intro */}
-      <section className="space-y-6 animate-fade-in-up">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{dict.aboutPage.title}</h1>
-        <p className="text-xl leading-relaxed text-muted-foreground">
-          {dict.aboutPage.intro}
-        </p>
+    <div className="space-y-16 max-w-5xl mx-auto">
+      {/* Intro with photo */}
+      <section className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center animate-fade-in-up">
+        <div className="space-y-6">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{dict.aboutPage.title}</h1>
+          <p className="text-xl leading-relaxed text-muted-foreground">
+            {dict.aboutPage.intro}
+          </p>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 120, rotate: -6, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, rotate: -2, scale: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ type: 'spring', bounce: 0.35, duration: 0.8 }}
+          className="rounded-2xl border border-border/60 bg-card/60 shadow-lg overflow-hidden h-[280px] lg:h-[320px] cursor-pointer"
+          onClick={shufflePhoto}
+          >
+          <Image
+            key={albumImages[photoIndex].src}
+            src={albumImages[photoIndex].src}
+            alt={albumImages[photoIndex].alt}
+            width={800}
+            height={600}
+            className="w-full h-full object-cover"
+            sizes="(min-width: 1024px) 40vw, 90vw"
+            priority
+          />
+        </motion.div>
       </section>
 
       {/* Background */}
@@ -98,6 +139,6 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
           ))}
         </div>
       </section>
-      </div>
+    </div>
   );
 }
