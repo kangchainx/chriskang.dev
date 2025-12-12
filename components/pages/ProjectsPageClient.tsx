@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowSquareOutIcon, CodeIcon, GithubLogoIcon } from '@phosphor-icons/react';
 
@@ -85,11 +86,14 @@ export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
                     const key = item.toLowerCase();
                     const icon = techIconMap[key];
                     return icon ? (
-                      <img
+                      <Image
                         key={item}
                         src={icon}
                         alt={item}
                         title={item}
+                        width={24}
+                        height={24}
+                        sizes="24px"
                         className="h-6 w-6 rounded-sm border border-border/50 bg-card/70 p-1"
                       />
                     ) : (
