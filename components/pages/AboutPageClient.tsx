@@ -12,12 +12,12 @@ interface AboutPageClientProps {
 
 export function AboutPageClient({ dict }: AboutPageClientProps) {
   const albumImages = [
-    { src: '/album/chris_01.jpg', alt: 'Chris Kang' },
+    // { src: '/album/chris_01.jpg', alt: 'Chris Kang' },
     { src: '/album/chris_02.jpeg', alt: 'Chris Kang' },
-    { src: '/album/chris_03.jpeg', alt: 'Chris Kang' },
-    { src: '/album/chris_04.jpeg', alt: 'Chris Kang' },
-    { src: '/album/chris_05.jpeg', alt: 'Chris Kang' },
-    { src: '/album/Timt_01.jpeg', alt: 'Chris Kang' },
+    // { src: '/album/chris_03.jpeg', alt: 'Chris Kang' },
+    // { src: '/album/chris_04.jpeg', alt: 'Chris Kang' },
+    // { src: '/album/chris_05.jpeg', alt: 'Chris Kang' },
+    // { src: '/album/Timt_01.jpeg', alt: 'Chris Kang' },
   ];
   const [photoIndex, setPhotoIndex] = React.useState(0);
 
