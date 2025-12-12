@@ -48,7 +48,8 @@ export default async function LocaleLayout({
     { label: dict.nav.items.home, href: `/${locale}` },
     { label: dict.nav.items.projects, href: `/${locale}/projects` },
     { label: dict.nav.items.about, href: `/${locale}/about` },
-    { label: dict.nav.items.blog, href: '#' },
+    { label: dict.nav.items.blog, href: `/${locale}/blog` },
+    { label: dict.nav.items.posts, href: `/${locale}/posts` },
   ];
 
   return (
