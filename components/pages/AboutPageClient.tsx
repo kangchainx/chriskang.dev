@@ -30,10 +30,75 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
     setPhotoIndex(next);
   }, [albumImages.length, photoIndex]);
 
+  const navItems = React.useMemo(
+    () => [
+      { id: 'about-intro', label: dict.aboutPage.title },
+      { id: 'about-background', label: dict.aboutPage.background.title },
+      { id: 'about-hire', label: dict.aboutPage.hire.title },
+      { id: 'about-approach', label: dict.aboutPage.approach.title },
+      { id: 'about-offer', label: dict.aboutPage.offer.title },
+      { id: 'about-skills', label: dict.aboutPage.skills.title },
+    ],
+    [dict],
+  );
+
+  const [activeSection, setActiveSection] = React.useState(navItems[0].id);
+
+  React.useEffect(() => {
+    setActiveSection(navItems[0].id);
+  }, [navItems]);
+
+  React.useEffect(() => {
+    const elements = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean) as HTMLElement[];
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const mostVisible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (mostVisible) setActiveSection(mostVisible.target.id);
+      },
+      {
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [navItems]);
+
   return (
-    <div className="space-y-16 max-w-5xl mx-auto">
+    <>
+      <nav className="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 flex-col gap-4 z-20">
+        {navItems.map((item) => {
+          const isActive = item.id === activeSection;
+          return (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={`group flex items-center gap-3 text-sm transition-colors ${
+                isActive ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              <span
+                className={`h-px bg-border transition-all duration-200 group-hover:bg-foreground ${
+                  isActive ? 'w-5 bg-foreground' : 'w-3 group-hover:w-5'
+                }`}
+                aria-hidden
+              />
+              <span>{item.label}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      <div className="space-y-16 max-w-5xl mx-auto">
       {/* Intro with photo */}
-      <section className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center animate-fade-in-up">
+      <section id="about-intro" className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center animate-fade-in-up scroll-mt-28">
         <div className="space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{dict.aboutPage.title}</h1>
           <p className="text-xl leading-relaxed text-muted-foreground">
@@ -62,7 +127,7 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
       </section>
 
       {/* Background */}
-      <section className="space-y-4 animate-fade-in-up delay-100">
+      <section id="about-background" className="space-y-4 animate-fade-in-up delay-100 scroll-mt-28">
         <h2 className="text-xl font-semibold border-b border-border pb-2 flex items-center gap-2">
            {dict.aboutPage.background.title}
         </h2>
@@ -77,7 +142,7 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
       </section>
 
       {/* Why Hire Me */}
-      <section className="space-y-4 animate-fade-in-up delay-150">
+      <section id="about-hire" className="space-y-4 animate-fade-in-up delay-150 scroll-mt-28">
         <h2 className="text-xl font-semibold border-b border-border pb-2 flex items-center gap-2">
           {dict.aboutPage.hire.title}
         </h2>
@@ -93,7 +158,7 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
       </section>
 
       {/* Approach */}
-      <section className="space-y-4 animate-fade-in-up delay-200">
+      <section id="about-approach" className="space-y-4 animate-fade-in-up delay-200 scroll-mt-28">
         <h2 className="text-xl font-semibold border-b border-border pb-2">{dict.aboutPage.approach.title}</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="p-4 bg-secondary/20 rounded-lg border border-border/50">
@@ -114,7 +179,7 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
       </section>
 
       {/* What I Offer */}
-      <section className="space-y-6 animate-fade-in-up delay-250">
+      <section id="about-offer" className="space-y-6 animate-fade-in-up delay-250 scroll-mt-28">
         <h2 className="text-xl font-semibold border-b border-border pb-2">{dict.aboutPage.offer.title}</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {dict.aboutPage.offer.cards.map((card) => (
@@ -127,7 +192,7 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
       </section>
 
       {/* Skills */}
-      <section className="space-y-6 animate-fade-in-up delay-300">
+      <section id="about-skills" className="space-y-6 animate-fade-in-up delay-300 scroll-mt-28">
         <h2 className="text-xl font-semibold border-b border-border pb-2">{dict.aboutPage.skills.title}</h2>
         
         <div className="grid gap-6 sm:grid-cols-2">
@@ -139,6 +204,7 @@ export function AboutPageClient({ dict }: AboutPageClientProps) {
           ))}
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

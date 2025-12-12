@@ -53,6 +53,7 @@ export const en = {
       projects: 'Projects',
       about: 'About',
       blog: 'Blog',
+      posts: 'Posts',
       contact: 'Contact',
     },
     languageToggle: {

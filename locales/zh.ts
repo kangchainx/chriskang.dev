@@ -25,6 +25,7 @@ export const zh = {
       projects: '项目',
       about: '关于',
       blog: '博客',
+      posts: '帖子',
       contact: '联系',
     },
     languageToggle: {
