@@ -108,6 +108,21 @@ body {
   animation-delay: var(--stack-delay, 0ms);
 }
 
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-scroll-up {
+  animation-name: scrollUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.hover-pause:hover {
+  animation-play-state: paused;
+}
+
 
 
 @layer base {
