@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from './ui/Button';
 import { ChatCircleIcon, CoffeeIcon, EnvelopeSimpleIcon, GithubLogoIcon, XLogoIcon } from '@phosphor-icons/react';
+import { VisitStats } from './VisitStats';
 
 interface FooterProps {
   text: string;
@@ -14,6 +15,8 @@ export const Footer: React.FC<FooterProps> = ({ text }) => {
         <p className="text-sm text-muted-foreground">
           {text}
         </p>
+
+        <VisitStats />
         
         <div className="flex flex-wrap gap-4 justify-center">
             {/* X (Twitter) */}
