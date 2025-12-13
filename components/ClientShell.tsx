@@ -157,7 +157,7 @@ const ClientShell: React.FC<ClientShellProps> = ({
         {children}
       </main>
 
-      <Footer text={footerText} />
+      <Footer text={footerText} wechatId={contact.wechatId} />
     </div>
   );
 };
