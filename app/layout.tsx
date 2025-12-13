@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import React from 'react';
 import { cookies, headers } from 'next/headers';
+import { Analytics } from '@vercel/analytics/next';
 
 import { i18n, type Locale } from '@/i18n.config';
 
@@ -59,6 +60,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${inter.className} bg-background text-foreground antialiased transition-colors duration-300 overflow-x-hidden`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
