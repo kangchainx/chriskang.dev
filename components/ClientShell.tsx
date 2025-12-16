@@ -87,7 +87,7 @@ const ClientShell: React.FC<ClientShellProps> = ({
     <div className="min-h-screen flex flex-col text-foreground selection:bg-foreground selection:text-background relative overflow-x-hidden">
       <CursorFollower />
       <Particles />
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-30">
+      <div className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 flex-col gap-3 z-30">
         {showTop && (
           <a
             href="#top"
