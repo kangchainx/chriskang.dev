@@ -56,18 +56,36 @@ export const zh = {
     },
     featured: {
       eyebrow: '精选项目',
-      title: 'YouTube 分析工具',
-      description: '一款开源工具，旨在为 YouTuber 提供频道数据分析、趋势追踪和性能洞察，帮助创作者了解受众并优化内容策略。',
-      points: [
-        '频道数据分析',
-        '趋势分析',
-        '个人频道洞察',
-        '视频转录',
-      ],
       techStackLabel: '技术栈：',
-      techStackValue: 'React、TypeScript、Node.js、Python、PostgreSQL、Minio、FFmpeg、yt-dlp、Tailwind CSS',
       repoCta: 'GitHub 仓库',
-      docsCta: '文档',
+      projects: [
+        {
+          title: 'YouTube 分析工具',
+          description:
+            '一款开源工具，旨在为 YouTuber 提供频道数据分析、趋势追踪和性能洞察，帮助创作者了解受众并优化内容策略。',
+          points: [
+            '频道数据分析',
+            '趋势分析',
+            '个人频道洞察',
+            '视频转录',
+          ],
+          techStackValue:
+            'React、TypeScript、Node.js、Python、PostgreSQL、Minio、FFmpeg、yt-dlp、Tailwind CSS',
+          repoUrl: 'https://github.com/kangchainx/youtube-analysis-project',
+        },
+        {
+          title: 'GitHub Christmas Kit',
+          description: '用于装饰 GitHub Profile README 的圣诞限定 SVG 图标集。',
+          points: [
+            '动态 SVG 图标',
+            '一键复制',
+            '内置 Contributor Lab',
+            '单文件 SPA',
+          ],
+          techStackValue: 'React、Tailwind CSS',
+          repoUrl: 'https://github.com/kangchainx/github-christmas-kit',
+        },
+      ],
     },
     otherProjects: {
       title: '其他项目',
@@ -89,22 +107,46 @@ export const zh = {
   },
   projectsPage: {
     heroTitle: '精选项目',
-    hero: {
-      badge: '开源',
-      title: 'YouTube 分析工具',
-      description: '为追求卓越的创作者提供强大的YouTube分析工具，不止是数据。',
-      bullets: [
-        '频道数据分析',
-        '趋势分析',
-        '个人频道洞察',
-        '视频转录',
-      ],
-      techStackLabel: '技术栈：',
-      techStackValue: 'React、TypeScript、Node.js、Python、PostgreSQL、Tailwind CSS',
-      repoCta: 'GitHub 仓库',
-      docsCta: '文档',
-      demoCta: '演示（即将上线）',
-    },
+    featuredProjects: [
+      {
+        badge: '开源',
+        title: 'YouTube 分析工具',
+        description: '为追求卓越的创作者提供强大的 YouTube 分析工具，不止是数据。',
+        bullets: [
+          '频道数据分析',
+          '趋势分析',
+          '个人频道洞察',
+          '视频转录',
+        ],
+        techStackLabel: '技术栈：',
+        techStackValue: 'React、TypeScript、Node.js、Python、PostgreSQL、Tailwind CSS',
+        repoCta: 'GitHub 仓库',
+        demoCta: '演示（即将上线）',
+        demoUrl: '',
+        repoUrl: 'https://github.com/kangchainx/youtube-analysis-project',
+        videoSrc: '/project-screenshot/yvap-demo-20251218.mp4',
+        posterSrc: '/project-screenshot/home_page.png',
+      },
+      {
+        badge: '开源',
+        title: 'GitHub Christmas Kit',
+        description: '用于装饰 GitHub Profile README 的圣诞限定 SVG 图标集。',
+        bullets: [
+          '动态 SVG 图标',
+          '一键复制',
+          '内置 Contributor Lab',
+          '单文件 SPA',
+        ],
+        techStackLabel: '技术栈：',
+        techStackValue: 'React、Tailwind CSS',
+        repoCta: 'GitHub 仓库',
+        demoCta: '试一试',
+        repoUrl: 'https://github.com/kangchainx/github-christmas-kit',
+        demoUrl: 'https://kangchainx.github.io/github-christmas-kit/',
+        videoSrc: '/project-screenshot/github_christmas_kit_demo.mp4',
+        posterSrc: '',
+      },
+    ],
     otherTitle: '其他项目',
     otherCards: [
       {

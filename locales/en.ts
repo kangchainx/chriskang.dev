@@ -83,18 +83,37 @@ export const en = {
       chartAlt: "Chris Kang's Github Chart",
     },
     featured: {
-      eyebrow: 'Featured Project',
-      title: 'YouTube Analysis Tool',
-      description: 'An open-source tool designed to support YouTubers with channel data analysis, trend tracking, and performance insights. It helps creators understand their audience and optimize content strategies.',
-      points: [
-        'Channel data analysis',
-        'Trend analysis',
-        'Personal channel insights',
-        'Video transcription',
-      ],
       techStackLabel: 'Tech Stack:',
-      techStackValue: 'React, TypeScript, Node.js, Python, PostgreSQL, Minio, FFmpeg, yt-dlp, Tailwind CSS',
+      eyebrow: 'Featured Projects',
       repoCta: 'GitHub Repo',
+      projects: [
+        {
+          title: 'YouTube Analysis Tool',
+          description:
+            'An open-source tool designed to support YouTubers with channel data analysis, trend tracking, and performance insights. It helps creators understand their audience and optimize content strategies.',
+          points: [
+            'Channel data analysis',
+            'Trend analysis',
+            'Personal channel insights',
+            'Video transcription',
+          ],
+          techStackValue:
+            'React, TypeScript, Node.js, Python, PostgreSQL, Minio, FFmpeg, yt-dlp, Tailwind CSS',
+          repoUrl: 'https://github.com/kangchainx/youtube-analysis-project',
+        },
+        {
+          title: 'GitHub Christmas Kit',
+          description: 'Christmas-only SVG icons for decorating your GitHub Profile README.',
+          points: [
+            'Animated SVG icons',
+            'One-click copy',
+            'Built-in Contributor Lab',
+            'Single-file SPA',
+          ],
+          techStackValue: 'React, Tailwind CSS',
+          repoUrl: 'https://github.com/kangchainx/github-christmas-kit',
+        },
+      ],
     },
     otherProjects: {
       title: 'Other Projects',
@@ -115,23 +134,47 @@ export const en = {
     },
   },
   projectsPage: {
-    heroTitle: 'Featured Project',
-    hero: {
-      badge: 'Open Source',
-      title: 'YouTube Analysis Tool',
-      description: 'Powerful YouTube analytics for creators who want more than just numbers.',
-      bullets: [
-        'Channel Data Analysis',
-        'Trend Analysis',
-        'Personal Channel Insights',
-        'Video Transcription',
-      ],
-      techStackLabel: 'Tech Stack:',
-      techStackValue: 'React, TypeScript, Node.js, Python, PostgreSQL, Tailwind CSS',
-      repoCta: 'GitHub Repo',
-      docsCta: 'Documentation',
-      demoCta: 'Demo (Coming Soon)',
-    },
+    heroTitle: 'Featured Projects',
+    featuredProjects: [
+      {
+        badge: 'Open Source',
+        title: 'YouTube Analysis Tool',
+        description: 'Powerful YouTube analytics for creators who want more than just numbers.',
+        bullets: [
+          'Channel Data Analysis',
+          'Trend Analysis',
+          'Personal Channel Insights',
+          'Video Transcription',
+        ],
+        techStackLabel: 'Tech Stack:',
+        techStackValue: 'React, TypeScript, Node.js, Python, PostgreSQL, Tailwind CSS',
+        repoCta: 'GitHub Repo',
+        demoCta: 'Demo (Coming Soon)',
+        demoUrl: '',
+        repoUrl: 'https://github.com/kangchainx/youtube-analysis-project',
+        videoSrc: '/project-screenshot/yvap-demo-20251218.mp4',
+        posterSrc: '/project-screenshot/home_page.png',
+      },
+      {
+        badge: 'Open Source',
+        title: 'GitHub Christmas Kit',
+        description: 'Christmas-only SVG icons for decorating your GitHub Profile README.',
+        bullets: [
+          'Animated SVG icons',
+          'One-click copy',
+          'Built-in Contributor Lab',
+          'Single-file SPA',
+        ],
+        techStackLabel: 'Tech Stack:',
+        techStackValue: 'React, Tailwind CSS',
+        repoCta: 'GitHub Repo',
+        demoCta: 'Try it Now',
+        repoUrl: 'https://github.com/kangchainx/github-christmas-kit',
+        demoUrl: 'https://kangchainx.github.io/github-christmas-kit/',
+        videoSrc: '/project-screenshot/github_christmas_kit_demo.mp4',
+        posterSrc: '',
+      },
+    ],
     otherTitle: 'Other Projects',
     otherCards: [
       {

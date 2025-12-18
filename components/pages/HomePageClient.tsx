@@ -118,7 +118,7 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
             </div>
             <Button variant="ghost" className="gap-2 group pl-0 md:pl-4" asChild>
               <a href="https://github.com/kangchainx" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                 {dict.home.openSource.profileCta} <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" weight="duotone" />
+                 {dict.home.openSource.profileCta} <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
           </div>
@@ -141,49 +141,66 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
         </div>
       </section>
 
-      {/* Featured Project */}
+      {/* Featured Projects */}
       <section className="space-y-8 animate-fade-in-up delay-500">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground/70">{dict.home.featured.eyebrow}</h2>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground/70">
+            {dict.home.featured.eyebrow}
+          </h2>
+          <Link
+            href={`/${locale}/projects`}
+            className="text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors inline-flex items-center gap-2"
+          >
+            {dict.home.hero.primaryCta}
+            <ArrowRightIcon className="w-4 h-4" />
+          </Link>
         </div>
 
-        <div className="group relative">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-          <Card className="relative overflow-hidden hover:border-foreground/20 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 bg-card/50 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl group-hover:text-primary transition-colors">{dict.home.featured.title}</CardTitle>
-              <CardDescription className="text-lg mt-2 text-foreground/80">
-                {dict.home.featured.description}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <ul className="grid sm:grid-cols-2 gap-2 text-muted-foreground">
-                {dict.home.featured.points.map((point) => (
-                  <li key={point} className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+        <div className="flex flex-col gap-6">
+          {dict.home.featured.projects.map((project) => (
+            <div key={project.repoUrl} className="group relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+              <Card className="relative overflow-hidden hover:border-foreground/20 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl group-hover:text-primary transition-colors">{project.title}</CardTitle>
+                  <CardDescription className="text-lg mt-2 text-foreground/80">{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <ul className="grid sm:grid-cols-2 gap-2 text-muted-foreground">
+                    {project.points.map((point) => (
+                      <li key={point} className="flex items-start gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
 
-              <div className="text-sm text-muted-foreground pt-2">
-                <span className="font-semibold text-foreground">{dict.home.featured.techStackLabel}</span> {dict.home.featured.techStackValue}
-              </div>
-            </CardContent>
-            <CardFooter className="gap-4">
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full hover:bg-black hover:text-white transition-all duration-200 ease-out pr-4 pl-4 gap-2"
-                asChild
-              >
-                <a href="https://github.com/kangchainx/youtube-analysis-project" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <GithubLogoIcon className="w-4 h-4" weight="duotone" />
-                  {dict.home.featured.repoCta}
-                </a>
-              </Button>
-            </CardFooter>
-          </Card>
+                  <div className="text-sm text-muted-foreground pt-2">
+                    <span className="font-semibold text-foreground">{dict.home.featured.techStackLabel}</span>{' '}
+                    {project.techStackValue}
+                  </div>
+                </CardContent>
+                <CardFooter className="gap-4">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="rounded-full hover:bg-black hover:text-white transition-all duration-200 ease-out pr-4 pl-4 gap-2"
+                    asChild
+                  >
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <GithubLogoIcon className="w-4 h-4" weight="duotone" />
+                      {dict.home.featured.repoCta}
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </div>
+          ))}
         </div>
       </section>
 
