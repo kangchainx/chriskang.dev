@@ -2,8 +2,13 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowSquareOutIcon, CodeIcon, GithubLogoIcon } from '@phosphor-icons/react';
+import {
+  ArrowSquareOutIcon,
+  CodeIcon,
+  GithubLogoIcon,
+  PauseIcon,
+  PlayIcon,
+} from '@phosphor-icons/react';
 
 import { Button } from '@/components/ui/Button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -18,6 +23,72 @@ type OtherCard = {
   description: string;
   badge?: string;
 };
+
+type DemoVideoProps = {
+  src: string;
+  poster?: string;
+};
+
+function DemoVideo({ src, poster }: DemoVideoProps) {
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
+  const togglePlayback = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      try {
+        await video.play();
+      } catch {
+        // Ignore play() errors (e.g. autoplay restrictions)
+      }
+      return;
+    }
+
+    video.pause();
+  };
+
+  return (
+    <div className="absolute inset-0 group">
+      <video
+        ref={videoRef}
+        className="h-full w-full object-cover"
+        src={src}
+        loop
+        muted
+        playsInline
+        poster={poster}
+        preload="metadata"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
+      >
+        <p>Your browser does not support the video tag.</p>
+      </video>
+
+      <button
+        type="button"
+        onClick={togglePlayback}
+        aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        className="absolute inset-0 flex items-center justify-center cursor-pointer"
+      >
+        <span
+          className={[
+            'inline-flex h-16 w-16 items-center justify-center rounded-full bg-black/60 text-white shadow-lg shadow-black/20 backdrop-blur-sm ring-1 ring-white/10 transition-all duration-200',
+            isPlaying ? 'opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-105' : 'opacity-100 hover:scale-105',
+          ].join(' ')}
+        >
+          {isPlaying ? (
+            <PauseIcon className="h-7 w-7" weight="fill" />
+          ) : (
+            <PlayIcon className="h-7 w-7 translate-x-[1px]" weight="fill" />
+          )}
+        </span>
+      </button>
+    </div>
+  );
+}
 
 export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
   const techIconMap: Record<string, string> = {
@@ -44,114 +115,119 @@ export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
     'vue.js': '/tech/vue.svg',
   };
 
-  const techStackItems = dict.projectsPage.hero.techStackValue
-    .split(',')
-    .map((item) => item.trim())
-    .filter(Boolean);
-
-  const screenshots = [
-    { src: '/project-screenshot/login_page.png', label: 'Login Page' },
-    { src: '/project-screenshot/home_page.png', label: 'Home Page' },
-    { src: '/project-screenshot/search_result_table_page.png', label: 'Search Table' },
-    { src: '/project-screenshot/search_result_card_page.png', label: 'Search Result Card' },
-    { src: '/project-screenshot/search_result_detail_page.png', label: 'Search Detail' },
-  ];
-
-  const [activeShot, setActiveShot] = React.useState(0);
-
-  React.useEffect(() => {
-    const id = setInterval(() => {
-      setActiveShot((prev) => (prev + 1) % screenshots.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, [screenshots.length]);
+  const parseTechStackItems = (value: string) =>
+    value
+      .split(/[、,]/g)
+      .map((item) => item.trim())
+      .filter(Boolean);
 
   return (
     <div className="space-y-20">
       
       {/* Featured Section */}
-      <section className="space-y-6 animate-fade-in-up">
+      <section className="space-y-10 animate-fade-in-up">
         <h1 className="text-3xl font-bold tracking-tight mb-8">{dict.projectsPage.heroTitle}</h1>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Content Column */}
-          <div className="space-y-8">
-            <div>
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                  <CodeIcon className="w-3 h-3" weight="duotone" /> {dict.projectsPage.hero.badge}
-                </div>
-                <div className="flex items-center gap-2">
-                  {techStackItems.map((item) => {
-                    const key = item.toLowerCase();
-                    const icon = techIconMap[key];
-                    return icon ? (
-                      <Image
-                        key={item}
-                        src={icon}
-                        alt={item}
-                        title={item}
-                        width={24}
-                        height={24}
-                        sizes="24px"
-                        className="h-6 w-6 rounded-sm border border-border/50 bg-card/70 p-1"
-                      />
-                    ) : (
-                      <span
-                        key={item}
-                        title={item}
-                        className="h-6 w-6 rounded-sm border border-border/50 bg-card/80 shadow-sm flex items-center justify-center"
+
+        <div className="space-y-16">
+          {dict.projectsPage.featuredProjects.map((project) => {
+            const techStackItems = parseTechStackItems(project.techStackValue);
+
+            return (
+              <div key={project.repoUrl} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                {/* Content Column */}
+                <div className="space-y-8">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                        <CodeIcon className="w-3 h-3" weight="duotone" /> {project.badge}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {techStackItems.map((item) => {
+                          const key = item.toLowerCase();
+                          const icon = techIconMap[key];
+                          return icon ? (
+                            <Image
+                              key={item}
+                              src={icon}
+                              alt={item}
+                              title={item}
+                              width={24}
+                              height={24}
+                              sizes="24px"
+                              className="h-6 w-6 rounded-sm border border-border/50 bg-card/70 p-1"
+                            />
+                          ) : (
+                            <span
+                              key={item}
+                              title={item}
+                              className="h-6 w-6 rounded-sm border border-border/50 bg-card/80 shadow-sm flex items-center justify-center"
+                            >
+                              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <h2 className="text-3xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+                      {project.title}
+                    </h2>
+                    <p className="text-lg text-muted-foreground leading-relaxed">{project.description}</p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <ul className="space-y-3 text-muted-foreground">
+                      {project.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-start gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0 shadow-[0_0_8px_rgba(var(--primary),0.5)]" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 pt-2">
+                    <Button
+                      className="gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all"
+                      asChild
+                    >
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
                       >
-                        <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
-                      </span>
-                    );
-                  })}
+                        <GithubLogoIcon className="w-4 h-4" weight="duotone" /> {project.repoCta}
+                      </a>
+                    </Button>
+
+                    {project.demoUrl ? (
+                      <Button variant="outline" className="gap-2" asChild>
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <ArrowSquareOutIcon className="w-4 h-4" weight="duotone" /> {project.demoCta}
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button variant="ghost" disabled className="gap-2 opacity-50 cursor-not-allowed">
+                        <ArrowSquareOutIcon className="w-4 h-4" weight="duotone" /> {project.demoCta}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Demo Video Column */}
+                <div className="w-full mt-6">
+                  <div className="relative aspect-video rounded-3xl overflow-hidden bg-card shadow-2xl shadow-black/5 border border-border scale-[1.03]">
+                    <DemoVideo src={project.videoSrc} poster={project.posterSrc || undefined} />
+                  </div>
                 </div>
               </div>
-              <h2 className="text-3xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">{dict.projectsPage.hero.title}</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {dict.projectsPage.hero.description}
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <ul className="space-y-3 text-muted-foreground">
-                {dict.projectsPage.hero.bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0 shadow-[0_0_8px_rgba(var(--primary),0.5)]" />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button className="gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all">
-                <GithubLogoIcon className="w-4 h-4" weight="duotone" /> {dict.projectsPage.hero.repoCta}
-              </Button>
-              <Button variant="ghost" disabled className="gap-2 opacity-50 cursor-not-allowed">
-                <ArrowSquareOutIcon className="w-4 h-4" weight="duotone" /> {dict.projectsPage.hero.demoCta}
-              </Button>
-            </div>
-          </div>
-
-          {/* Screenshot / Demo Column */}
-          <div className="w-full mt-6">
-            <div className="relative aspect-video rounded-3xl overflow-hidden bg-card shadow-2xl shadow-black/5 border border-border scale-[1.03]">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={screenshots[activeShot].src}
-                  src={screenshots[activeShot].src}
-                  alt={screenshots[activeShot].label}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                />
-              </AnimatePresence>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
