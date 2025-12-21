@@ -251,7 +251,7 @@ export const zh = {
       items: {
         email: 'kangchehe666@gmail.com',
         github: 'github.com/kangchainx',
-        x: 'x.com/ccKang666',
+        x: 'x.com/kangchainx',
       },
     },
   },
