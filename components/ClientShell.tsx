@@ -8,6 +8,7 @@ import { CursorFollower } from './CursorFollower';
 import { Footer } from './Footer';
 import { Navbar } from './Navbar';
 import { Particles } from './Particles';
+import { Snowfall } from './Snowfall';
 import type { NavItem } from '@/types';
 import type { Locale } from '@/i18n.config';
 
@@ -86,7 +87,7 @@ const ClientShell: React.FC<ClientShellProps> = ({
   return (
     <div className="min-h-screen flex flex-col text-foreground selection:bg-foreground selection:text-background relative overflow-x-hidden">
       <CursorFollower />
-      <Particles />
+      {isDark ? <Snowfall /> : <Particles />}
       <div className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 flex-col gap-3 z-30">
         {showTop && (
           <a
