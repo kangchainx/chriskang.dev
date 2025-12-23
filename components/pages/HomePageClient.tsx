@@ -40,8 +40,28 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
         <div className="space-y-4 max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
             {dict.home.hero.greeting}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/50">
-              {dict.home.hero.name}
+            <span className="relative inline-block">
+              <a
+                href="https://kangchainx.github.io/github-christmas-kit"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Christmas kit"
+                className="absolute -top-6 -left-4 md:-top-8 md:-left-5 w-9 h-9 md:w-11 md:h-11 -rotate-12 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-full"
+              >
+                <img
+                  src="/svg/christmas-tree.svg"
+                  alt="Christmas Tree"
+                  className="block h-full w-full dark:hidden"
+                />
+                <img
+                  src="/svg/santa-hat.svg"
+                  alt="Santa Hat"
+                  className="hidden h-full w-full dark:block"
+                />
+              </a>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/50">
+                {dict.home.hero.name}
+              </span>
             </span>{' '}
             — <br />
             {dict.home.hero.titleLines[0]} <br />
