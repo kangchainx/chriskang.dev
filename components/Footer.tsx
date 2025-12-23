@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ text, wechatId }) => {
         <div className="flex flex-wrap gap-4 justify-center">
             {/* X (Twitter) */}
             <Button variant="ghost" size="icon" className="rounded-full w-9 h-9 text-muted-foreground hover:bg-foreground hover:text-background transition-colors" asChild>
-              <a href="https://x.com/ccKang666" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <a href="https://x.com/kangchainx" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
                 <XLogoIcon className="w-4 h-4" weight="duotone" />
               </a>
             </Button>
