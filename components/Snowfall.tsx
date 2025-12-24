@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 type LayerConfig = {
   countRatio: number;
@@ -43,8 +43,27 @@ export const Snowfall: React.FC = () => {
       canvas,
       alpha: true,
       antialias: true,
-      powerPreference: 'low-power',
+      powerPreference: "low-power",
     });
+
+    const snowflakeTexture = (() => {
+      const textureCanvas = document.createElement('canvas');
+      textureCanvas.width = 64;
+      textureCanvas.height = 64;
+      const context = textureCanvas.getContext('2d');
+      if (!context) return null;
+
+      const gradient = context.createRadialGradient(32, 32, 0, 32, 32, 32);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, 64, 64);
+
+      const texture = new THREE.CanvasTexture(textureCanvas);
+      return texture;
+    })();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
@@ -83,20 +102,41 @@ export const Snowfall: React.FC = () => {
       },
     ];
 
-    const totalCount = Math.max(layerConfigs.length, Math.min(Math.floor((width * height) / 3200), 2000));
-    const counts = layerConfigs.map((config) => Math.max(1, Math.floor(totalCount * config.countRatio)));
-    const countDelta = totalCount - counts.reduce((sum, value) => sum + value, 0);
-    counts[counts.length - 1] = Math.max(1, counts[counts.length - 1] + countDelta);
+    const totalCount = Math.max(
+      layerConfigs.length,
+      Math.min(Math.floor((width * height) / 1200), 4000)
+    );
+    const counts = layerConfigs.map((config) =>
+      Math.max(1, Math.floor(totalCount * config.countRatio))
+    );
+    const countDelta =
+      totalCount - counts.reduce((sum, value) => sum + value, 0);
+    counts[counts.length - 1] = Math.max(
+      1,
+      counts[counts.length - 1] + countDelta
+    );
 
     const resetParticle = (layer: LayerState, index: number, yPos?: number) => {
       const { positions, velocities, swayOffsets, config } = layer;
       const i = index * 3;
       positions[i] = (Math.random() - 0.5) * width;
       positions[i + 1] = yPos ?? (Math.random() - 0.5) * height;
-      positions[i + 2] = THREE.MathUtils.lerp(config.depth[0], config.depth[1], Math.random());
-      const drift = THREE.MathUtils.lerp(config.drift[0], config.drift[1], Math.random());
+      positions[i + 2] = THREE.MathUtils.lerp(
+        config.depth[0],
+        config.depth[1],
+        Math.random()
+      );
+      const drift = THREE.MathUtils.lerp(
+        config.drift[0],
+        config.drift[1],
+        Math.random()
+      );
       velocities[i] = (Math.random() > 0.5 ? 1 : -1) * drift;
-      velocities[i + 1] = -THREE.MathUtils.lerp(config.speed[0], config.speed[1], Math.random());
+      velocities[i + 1] = -THREE.MathUtils.lerp(
+        config.speed[0],
+        config.speed[1],
+        Math.random()
+      );
       velocities[i + 2] = (Math.random() - 0.5) * 0.06;
       swayOffsets[index] = Math.random() * Math.PI * 2;
     };
@@ -107,7 +147,10 @@ export const Snowfall: React.FC = () => {
       const velocities = new Float32Array(count * 3);
       const swayOffsets = new Float32Array(count);
       const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
       const material = new THREE.PointsMaterial({
         color: 0xffffff,
         size: config.size,
@@ -115,6 +158,9 @@ export const Snowfall: React.FC = () => {
         transparent: true,
         depthWrite: false,
         sizeAttenuation: true,
+        map: snowflakeTexture,
+        alphaTest: 0.001,
+        blending: THREE.AdditiveBlending,
       });
       const points = new THREE.Points(geometry, material);
       scene.add(points);
@@ -159,10 +205,14 @@ export const Snowfall: React.FC = () => {
             continue;
           }
 
-          if (positions[idx] < -halfWidth - margin) positions[idx] = halfWidth + margin;
-          if (positions[idx] > halfWidth + margin) positions[idx] = -halfWidth - margin;
-          if (positions[idx + 2] < config.depth[0]) positions[idx + 2] = config.depth[1];
-          if (positions[idx + 2] > config.depth[1]) positions[idx + 2] = config.depth[0];
+          if (positions[idx] < -halfWidth - margin)
+            positions[idx] = halfWidth + margin;
+          if (positions[idx] > halfWidth + margin)
+            positions[idx] = -halfWidth - margin;
+          if (positions[idx + 2] < config.depth[0])
+            positions[idx + 2] = config.depth[1];
+          if (positions[idx + 2] > config.depth[1])
+            positions[idx + 2] = config.depth[0];
         }
 
         layer.geometry.attributes.position.needsUpdate = true;
@@ -191,35 +241,50 @@ export const Snowfall: React.FC = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     const handleMouseMove = (event: MouseEvent) => {
       const dx = event.clientX - mouseRef.current.x;
       const dy = event.clientY - mouseRef.current.y;
       mouseRef.current.x = event.clientX;
       mouseRef.current.y = event.clientY;
       mouseRef.current.active = true;
-      windRef.current.x = THREE.MathUtils.clamp(windRef.current.x + dx * 0.002, -1.6, 1.6);
-      windRef.current.y = THREE.MathUtils.clamp(windRef.current.y + dy * 0.0014, -1.2, 1.2);
+      windRef.current.x = THREE.MathUtils.clamp(
+        windRef.current.x + dx * 0.002,
+        -1.6,
+        1.6
+      );
+      windRef.current.y = THREE.MathUtils.clamp(
+        windRef.current.y + dy * 0.0014,
+        -1.2,
+        1.2
+      );
     };
     const handleMouseLeave = () => {
       mouseRef.current.active = false;
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
       for (const layer of layers) {
         scene.remove(layer.points);
         layer.geometry.dispose();
         layer.material.dispose();
       }
+      snowflakeTexture?.dispose();
       renderer.dispose();
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 z-[2] pointer-events-none" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 z-[2] pointer-events-none"
+      aria-hidden="true"
+    />
+  );
 };
