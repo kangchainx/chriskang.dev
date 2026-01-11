@@ -41,7 +41,8 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
             {dict.home.hero.greeting}{' '}
             <span className="relative inline-block">
-              <a
+              {/* Christmas decorations - uncomment during holiday season */}
+              {/* <a
                 href="https://kangchainx.github.io/github-christmas-kit"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -58,7 +59,7 @@ export function HomePageClient({ dict, locale }: HomePageClientProps) {
                   alt="Santa Hat"
                   className="hidden h-full w-full dark:block"
                 />
-              </a>
+              </a> */}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/50">
                 {dict.home.hero.name}
               </span>
