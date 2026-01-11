@@ -222,7 +222,16 @@ export function ProjectsPageClient({ dict }: ProjectsPageClientProps) {
                 {/* Demo Video Column */}
                 <div className="w-full mt-6">
                   <div className="relative aspect-video rounded-3xl overflow-hidden bg-card shadow-2xl shadow-black/5 border border-border scale-[1.03]">
-                    <DemoVideo src={project.videoSrc} poster={project.posterSrc || undefined} />
+                    {project.videoSrc ? (
+                      <DemoVideo src={project.videoSrc} poster={project.posterSrc || undefined} />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-secondary/30 to-background">
+                        <div className="text-center space-y-2">
+                          <CodeIcon className="w-16 h-16 mx-auto text-muted-foreground/50" weight="duotone" />
+                          <p className="text-sm text-muted-foreground">Demo Coming Soon</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
