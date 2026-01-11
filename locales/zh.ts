@@ -74,6 +74,30 @@ export const zh = {
           repoUrl: 'https://github.com/kangchainx/youtube-analysis-project',
         },
         {
+          title: 'video-text-extension',
+          description: '一款先进的 Chrome 侧边栏工具，使用本地 AI 能力将视频转换为文本。安全、免费且无限制。',
+          points: [
+            '隐私优先',
+            '无限使用',
+            '支持登录',
+            '强大的原生后端',
+          ],
+          techStackValue: 'React 19、TypeScript、Chrome Native Messaging、Python、FastAPI、faster-whisper、yt-dlp',
+          repoUrl: 'https://github.com/kangchainx/video-text-chrome-extension',
+        },
+        {
+          title: 'github-readme-studio',
+          description: '一个强大的可视化拖拽构建器，用于创建专业的 GitHub Profile README。',
+          points: [
+            '可视化编辑',
+            '丰富组件库',
+            '高级美学设计',
+            '一键导出',
+          ],
+          techStackValue: 'React 19、TypeScript、Vite、Zustand、Tailwind CSS、Markdown Generation',
+          repoUrl: 'https://github.com/kangchainx/github-readme-studio',
+        },
+        {
           title: 'GitHub Christmas Kit',
           description: '用于装饰 GitHub Profile README 的圣诞限定 SVG 图标集。',
           points: [
@@ -91,7 +115,7 @@ export const zh = {
       title: '其他项目',
       cards: [
         {
-          title: 'SpiritFast',
+          title: 'SoulFast',
           description: '游戏化轻断食，灵兽陪伴 + 损失厌恶机制，结合 Proof of Body 与 Web3 激励。',
         },
         {
@@ -129,6 +153,44 @@ export const zh = {
       },
       {
         badge: '开源',
+        title: 'video-text-extension',
+        description: '一款先进的 Chrome 侧边栏工具，使用本地 AI 能力将视频转换为文本。安全、免费且无限制。',
+        bullets: [
+          '隐私优先',
+          '无限使用',
+          '支持登录',
+          '强大的原生后端',
+        ],
+        techStackLabel: '技术栈：',
+        techStackValue: 'React 19、TypeScript、Chrome Native Messaging、Python、FastAPI、faster-whisper、yt-dlp',
+        repoCta: 'GitHub 仓库',
+        demoCta: '演示（即将上线）',
+        demoUrl: '',
+        repoUrl: 'https://github.com/kangchainx/video-text-chrome-extension',
+        videoSrc: '/project-screenshot/video_text_chrome_extension.mp4',
+        posterSrc: '',
+      },
+      {
+        badge: '开源',
+        title: 'github-readme-studio',
+        description: '一个强大的可视化拖拽构建器，用于创建专业的 GitHub Profile README。',
+        bullets: [
+          '可视化编辑',
+          '丰富组件库',
+          '高级美学设计',
+          '一键导出',
+        ],
+        techStackLabel: '技术栈：',
+        techStackValue: 'React 19、TypeScript、Vite、Zustand、Tailwind CSS、Markdown Generation',
+        repoCta: 'GitHub 仓库',
+        demoCta: '演示（即将上线）',
+        demoUrl: '',
+        repoUrl: 'https://github.com/kangchainx/github-readme-studio',
+        videoSrc: '/project-screenshot/github_studio.mp4',
+        posterSrc: '',
+      },
+      {
+        badge: '开源',
         title: 'GitHub Christmas Kit',
         description: '用于装饰 GitHub Profile README 的圣诞限定 SVG 图标集。',
         bullets: [
@@ -150,7 +212,7 @@ export const zh = {
     otherTitle: '其他项目',
     otherCards: [
       {
-        title: 'SpiritFast',
+        title: 'SoulFast',
         description: '配伴式游戏化轻断食，灵兽羁绊 + Proof of Body + Web3 激励。',
       },
       {
