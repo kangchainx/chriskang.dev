@@ -64,7 +64,7 @@ export const en = {
     },
   },
   footer: {
-    copyright: "© 2025 Chris Kang. All rights reserved.",
+    copyright: "© 2026 Chris Kang. All rights reserved.",
   },
   home: {
     hero: {
@@ -81,7 +81,7 @@ export const en = {
     openSource: {
       title: "Open Source Activity",
       description:
-        "Active on GitHub since Oct 2024. Building tools for developers and creators.",
+        "Active on GitHub since Oct 2025. Building tools for developers and creators.",
       profileCta: "View Profile",
       chartAlt: "Chris Kang's Github Chart",
     },
@@ -276,7 +276,7 @@ export const en = {
     contributions: {
       title: "Open-source Contributions",
       lines: [
-        "Active on GitHub since Oct 2024.",
+        "Active on GitHub since Oct 2025.",
         "Building tools for developers and creators.",
         "Interested in AI, automation, and Web3 infrastructure.",
       ],

@@ -35,7 +35,7 @@ export const zh = {
     },
   },
   footer: {
-    copyright: '© 2025 Chris Kang. 保留所有权利。',
+    copyright: '© 2026 Chris Kang. 保留所有权利。',
   },
   home: {
     hero: {
@@ -50,7 +50,7 @@ export const zh = {
     techStack: TECH_STACK,
     openSource: {
       title: '开源动态',
-      description: '自 2024 年 10 月起活跃于 GitHub，打造面向开发者和创作者的工具。',
+      description: '自 2025 年 10 月起活跃于 GitHub，打造面向开发者和创作者的工具。',
       profileCta: '查看主页',
       chartAlt: 'Chris Kang 的 GitHub 贡献图',
     },
@@ -227,7 +227,7 @@ export const zh = {
     contributions: {
       title: '开源贡献',
       lines: [
-        '自 2024 年 10 月起活跃于 GitHub。',
+        '自 2025 年 10 月起活跃于 GitHub。',
         '为开发者和创作者打造工具。',
         '关注 AI、自动化与 Web3 基础设施。',
       ],
