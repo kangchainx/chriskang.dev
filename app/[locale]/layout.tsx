@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
-import React from 'react';
+import type { Metadata } from "next";
+import React from "react";
 
-import ClientShell from '@/components/ClientShell';
-import { i18n, type Locale } from '@/i18n.config';
-import { getDictionary } from '@/locales';
+import ClientShell from "@/components/ClientShell";
+import { i18n, type Locale } from "@/i18n.config";
+import { getDictionary } from "@/locales";
 
 const resolveLocale = (value: string): Locale =>
   i18n.locales.find((l) => l === value) ?? i18n.defaultLocale;
@@ -26,8 +26,8 @@ export async function generateMetadata({
     description: dict.meta.description,
     alternates: {
       languages: {
-        en: '/en',
-        zh: '/zh',
+        en: "/en",
+        zh: "/zh",
       },
     },
   };
@@ -63,8 +63,8 @@ export default async function LocaleLayout({
         email: dict.aboutPage.contact.items.email,
         github: dict.aboutPage.contact.items.github,
         x: dict.aboutPage.contact.items.x,
-        linkedin: 'www.linkedin.com/in/chris-k66',
-        wechatId: 'Kangogoaka',
+        linkedin: "www.linkedin.com/in/kangchainh",
+        wechatId: "Kangogoaka",
       }}
     >
       {children}
